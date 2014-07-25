@@ -1,0 +1,8 @@
+logout.php: kill session data
+
+formTemplate folder:
+	* Submit function return string format:
+		- json string
+		- status = 0 -> function work, 1 -> function fail.
+		- p1 = message string
+		- p2 = message string

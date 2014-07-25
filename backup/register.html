@@ -1,0 +1,340 @@
+<!DOCTYPS html>
+<htm>
+<head>
+	<meta charset="utf-8">
+	<title>使用者註冊</title>
+
+	<script src="js/jquery-1.11.1.js"></script>
+	<link rel="stylesheet" type="text/css" href="theme.css">
+
+	<script>
+		function responseData()
+		{			
+                        document.getElementById("print-area").innerHTML = "";
+
+			var dataObj = checkData();
+			if(dataObj == "") {
+				return ;
+			}
+			
+			//alert(dataObj);
+
+			var xmlhttp;
+			if (window.XMLHttpRequest)
+			{ // code for IE7+, Firefox, Chrome, Opera, Safari
+				xmlhttp=new XMLHttpRequest();
+  			} else { // code for IE6, IE5
+				xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+			}
+	
+			xmlhttp.onreadystatechange = function()
+  			{
+				if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
+    				{
+                                        checkReturnMessage(xmlhttp.responseText);
+    					//document.getElementById("print-area").innerText = xmlhttp.responseText;
+                                        //alert(xmlhttp.responseText);
+    				}
+
+  			}
+				xmlhttp.open("POST", "applyAccount.php", true);
+				xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+				xmlhttp.send(dataObj);
+		}
+
+		function checkData()
+		{
+			var name = document.getElementById("user-name").value;
+			var identity = document.getElementById("user-identity").value;
+			var id = document.getElementById("user-id").value;
+			var email = document.getElementById("user-email").value;
+			var password = document.getElementById("user-password").value;
+
+			var dataObj = "";
+			var dataOK = true;
+			
+                        dataOK = checkInput(0, 0) && checkInput(1, 0) && checkInput(2, 0) && checkInput(3, 0) && checkInput(4, 0);			
+			if(dataOK) {
+				dataObj = ""
+					+ "name=" + name + "&"
+					+ "identity=" + identity + "&"
+					+ "id=" + id + "&"
+					+ "email=" + email + "&"
+					+ "password=" + password;
+
+				return dataObj;
+			} else {
+				return null;
+			}
+		}
+
+		function checkInput(num, repeat)
+                {
+			if (num == 0) {
+				var user_name = document.getElementById("user-name").value;
+				if (user_name.length == 0) {
+					document.getElementById("user-name-hit").innerHTML = "* 請輸入使用者名稱";
+                                        return false;
+				} else if (repeat == true) {
+                                        //
+                                        return false;
+                                } else {
+					document.getElementById("user-name-hit").innerHTML = "";
+                                        return true;
+				}
+                        } else if (num == 1) {
+				var user_identity = document.getElementById("user-identity").value;
+				if (user_identity == "null") {
+					document.getElementById("user-identity-hit").innerHTML = "* 請輸入使用者職稱";
+                                        return false;
+				} else if (repeat == true) {
+                                        //
+                                        return false;
+                                } else {
+					document.getElementById("user-identity-hit").innerHTML = "";    
+                                        return true;
+				}
+                        } else if (num == 2) {
+				var user_id = document.getElementById("user-id").value;
+				if (user_id.length == 0) {
+					document.getElementById("user-id-hit").innerHTML = "* 請輸入使用者號碼";
+                                        return false;
+				} else if (repeat == true) {
+                                        document.getElementById("user-id-hit").innerHTML = "* 使用者號碼重複";
+                                        return false;
+                                } else {
+					document.getElementById("user-id-hit").innerHTML = "";
+                                        return true;
+				}
+                        } else if (num == 3) {
+				var user_email = document.getElementById("user-email").value;
+				if (user_email.length == 0) {
+					document.getElementById("user-email-hit").innerHTML = "* 請輸入使用者電子信箱";
+                                        return false;
+				} else if (repeat == true) {
+                                        document.getElementById("user-email-hit").innerHTML = "* 使用者電子信箱重複";
+                                        return false;
+                                } else {
+					document.getElementById("user-email-hit").innerHTML = "";
+                                        return true;
+				}
+                        } else if (num == 4) {
+				var user_password = document.getElementById("user-password").value;
+				if (user_password.length == 0) {
+					document.getElementById("user-password-hit").innerHTML = "* 請輸入使用者密碼";
+                                        return false;
+				} else if (repeat == true) {
+                                        //
+                                        return false;
+                                } else {
+					document.getElementById("user-password-hit").innerHTML = "";
+                                        return true;
+				}
+                        } else {
+                                //  error option
+                                return false;
+                        }
+   
+                        return false;
+		}
+
+                function checkReturnMessage(ew)        
+                {
+                /*
+                        para_status : true => parametrs are OK
+                        para_status : false => parametrs lack
+                        DB_status : true => connect to DB success
+                        DB_status : false => conect ot DB fail
+                        error : 0 => user id duplic
+                        error : 1 => write data to DB fail
+                 */
+
+                        var mes = "";
+                        mes = jQuery.parseJSON(ew);
+                        //alert(mes.para_status);
+                        if (mes.para_status == "false") {
+                                document.getElementById("print-area").innerHTML = "填入的資料有問題，請重新填寫";
+                                return ;
+                        }
+
+                        if (mes.DB_status == "false") {
+                                document.getElementById("print-area").innerHTML = "伺服器異常，請稍候再進行申請";
+                                return ;
+                        }
+
+                        switch (mes.error) {
+                                case 0:
+                                        document.getElementById("print-area").innerHTML = "學生學號或教職員號碼重複，此號碼已經被使用";
+                                        return ;
+                                case 1:
+                                        document.getElementById("print-area").innerHTML = "伺服器異常，請稍候再進行申請";
+                                        return ;
+                                default: 
+                                        break;
+                        }
+
+                        // success
+                        document.getElementById("print-area").innerHTML = "帳號登記完成，請等待管理員審核資格";
+                        return ;
+                }
+		
+		
+	</script>
+
+	<style>
+		body {
+			margin: 0;
+			border: none;
+			padding: 0;
+			width: 100%;
+			min-width: 700px;
+			color: #343434;
+			background: #fff;
+			font-family: Roboto, Helvetica, Arial, sans-serif;
+			font-size: 18px;
+			word-wrap:break-word;
+		}
+
+		.wrapper {
+			width: 100%;
+		}
+
+		#title {
+			font-size: 24px;
+			margin: 0 auto;
+			padding: 10px;
+			text-align: center;
+		}
+
+		#data-area {
+			width: 700px;
+			margin: 0 auto;
+			border-width: 1px;
+			border-style: solid;
+			border-color: gray;
+			padding: 5px 50px;
+		}
+
+		.type {
+			margin: 40px;
+
+		}
+
+		.type * {
+
+		}
+
+		.form-label {
+
+		}
+
+                .form-label {
+                        height: 40px;
+                        font-size: 20px;
+                        font-family: Arial;
+                        color: #343434;
+                        
+                }
+       
+		.form-input {
+			height: 30px;
+			font-size: 16px;
+			font-family: Arial;
+			color: red;
+		}
+
+                .user-input {
+                        background: #fff;
+                        width: 350px;
+                        height: 30px;
+                        padding: 5px;
+                        font-size: 16px;
+                        font-family: sans-serif;
+                        color: #343434;
+                }
+
+		#submit-button {
+			cursor: pointer;
+			font-size: 15px;
+			border: none;
+			padding: 9px 0;
+			color: #fff;
+			background-color: #03a9f4;
+			display:inline-block;
+			width: 335px;
+		}
+
+                #print-area {
+                        width: 600px;
+                        margin: 0 auto;
+                        padding: 40px;
+                        
+                        font-size: 24px;
+                        color: red;
+                }
+
+	</style>
+</head>
+<body>
+	<div class="wrapper">
+		<div id="title"><h2>註冊使用者資料</h2></div>
+
+		<div id="data-area">
+			<form method="post" action="createAccount.php" accept-charset="utf-8">
+				<div class="textbox">
+					<div class="type">
+						<label class="form-label">全名</label><br />
+						<div class="form-input">
+							<input type="text" name="user-name" class="user-input" id="user-name" size="40" onchange="checkInput(0)">
+							<div id="user-name-hit"></div>
+						</div>
+					</div>
+					<div class="type">
+						<label class="form-label">職稱</label><br />
+                                                <div class="form-input">
+							<!--<input type="text" name="identity" id="useridentity" size="40" onchange="checkInput(1)">-->
+							<select name="user-identity" class="user-input" id="user-identity" onchange="checkInput(1)">
+								<option value="null">請選擇</option>
+								<option value="student">學生</option>
+								<option value="ta">助教</option>
+								<option value="teacher">教職員</option>
+							</select>
+							<div id="user-identity-hit"></div>
+						</div>
+					</div>
+					<div class="type">
+						<label class="form-label">學生學號或教職員號碼</label><br />
+						<div class="form-input">
+							<input type="text" name="user-id" class="user-input" id="user-id" size="40" onchange="checkInput(2)">
+							<div id="user-id-hit"></div>
+						</div>
+					</div>
+					<div class="type">
+						<label class="form-label">學校電子郵件地址</label><br />
+						<div class="form-input">
+							<input type="text" name="user-email" class="user-input" id="user-email" size="40" onchange="checkInput(3)">
+							<div id="user-email-hit"></div>
+						</div>
+					</div>
+					<div class="type">
+						<label class="form-label">建立一組密碼</label><br />
+						<div class="form-input">
+							<input type="password" name="user-password" class="user-input" id="user-password" size="40" onchange="checkInput(4)">
+							<div id="user-password-hit"></div>
+						</div>
+					</div>
+					<div class="type">
+						<button id="submit-button" type="button" onclick="responseData()">建立帳號</button>
+						<!--<input type="submit" onsubmit="checkData()" value="建立帳號">-->
+					</div>
+				</div>
+			</form>
+		</div>
+
+		<div id="message-area">
+                        <div id="print-area"></div>
+                </div>
+		
+	</div>
+</body>
+</html>

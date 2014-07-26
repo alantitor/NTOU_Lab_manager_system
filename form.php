@@ -130,7 +130,7 @@
 		// extra ajax return string of submit data status
 		function extraReturnMessage2(mes)
 		{
-			//alert("this is return message 2: " + mes);
+			alert("this is return message 2: " + mes);
 			var jsonObj = JSON.parse(mes);
 
 			if (jsonObj.status == "1") {  // 1 mean ok

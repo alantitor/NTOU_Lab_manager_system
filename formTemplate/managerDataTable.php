@@ -25,6 +25,10 @@
 			 //. ""
 			 . "} else if (a == '2') {"  // submit data
 			 //. 	"alert('2');"
+			 //	check data status
+
+
+
 			 . 	"var jsonStr = '{';"
 
 			 // 	get part1 input value
@@ -37,13 +41,12 @@
                          .      "arr_a[3] = $('#gia4').val();"
 			 .	"arr_a_result = JSON.stringify(arr_a);"
 			 .	"jsonStr += '\"ga_data\":' + arr_a_result + ',';"
-			 .	"jsonStr += '\"ga_number\":\"4\",';"
 
 			 //  	get part2 input value
 			 .	"var tt = \"\";"
 			 .	"tt = $('input:radio[name=\"gib-a1\"]:checked').val();"
-			 .	""
-
+			 .	"var arr_gib_a = [$('input:radio[name=\"gib-a1\"]:checked').val(), $('input:radio[name=\"gib-a2\"]:checked').val(), $('input:radio[name=\"gib-a3\"]:checked').val(), $('#gib-a4').val(), $('input:radio[name=\"gib-a5\"]:checked').val()];"
+			.	"jsonStr += '\"gib_a\":' + JSON.stringify(arr_gib_a) + ',';"
 
 
 			 //.	"var tInput = $('#gt-b').find('.gen-input-b');"

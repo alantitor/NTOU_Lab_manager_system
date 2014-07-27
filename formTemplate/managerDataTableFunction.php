@@ -6,5 +6,5 @@
 
 
 
-	echo "hello mdtf.php";
+	echo "hello managerDangerTableFunction.php";
 ?>

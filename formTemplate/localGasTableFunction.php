@@ -6,5 +6,5 @@
 
 
 
-	echo "hello dif.php";
+	echo "hello localGasFunction.php";
 ?>

@@ -1,7 +1,7 @@
 <?php
 // 處理公告欄資料
 
-        function drawDangerItemTable()
+        function drawMachineTable()
         {
                 $css = "";
 		$js_par = "";
@@ -20,7 +20,7 @@
 		 * 3) call responseSubmitData() send data.
 		 */
 		$js_par = "a";
-		$js_body = "targetFormPHP = \"formTemplate/dangerItemTableFunction.php\";"  // set submit php
+		$js_body = "targetFormPHP = \"formTemplate/machineTableFunction.php\";"  // set submit php
 			 . "if (a == '1') {"  // add new row at table
 			 .	"var content = \"<tr><td><input class='gen-box gen-textbox gen-input-b' type='text'></td><td><input class='gen-box gen-textbox gen-input-b' type='text'></td><td><input class='gen-box gen-textbox gen-input-b' type='text'></td><td><input class='gen-box gen-textbox gen-input-b' type='text'></td><td><input class='gen-box gen-textbox gen-input-b' type='text'></td><td><input class='gen-box gen-textbox gen-input-b' type='text'></td><td><input class='gen-box gen-textbox gen-input-b' type='text'></td></tr>\";"  // create html
 			 . 	"$(\"#gt-b tr:last-child\").after(content);"
@@ -54,7 +54,7 @@
 			 .	"jsonStr += '\"gb_data\":' + arr_b_result + ',';"  // javascript to json array, don't add " at [].
 
 			 //  	count data number
-			 .	"jsonStr += '\"gb_unit\":\"7\",';"
+			 .	"jsonStr += '\"gb_unit\":\"7\",';"  // ***
 			 . 	"jsonStr += '\"gb_number\":\"' + tInput.length + '\",';"  // element number
 
 			 .	"jsonStr += '\"status\":\"1\"';"  // function trigger(ID), 1: submit, 2: update, 3: list all, 4: delete
@@ -66,7 +66,7 @@
 			 . "}";
 
 		 $time = date('Y-m-d');
-		 $html  = "<div class=\"gen-title\">國立臺灣海洋大學安全衛生適用場所基本資料表<br>毒性化學物質、危險物、有害物物質清單</div>"
+		 $html  = "<div class=\"gen-title\">國立臺灣海洋大學安全衛生適用場所基本資料表<br>局部排氣裝置及無菌操作台資料表</div>"
                		. "<hr class=\"gen-hr\">"
 			. "<div class=\"gen-box gen-subtitle\">填表時間</div>"
                         . "<input class=\"gen-box gen-textbox gen-input-a\" id=\"gia1\" value=\"$time\" type=\"text\" disabled>"
@@ -77,13 +77,23 @@
                         . "<div class=\"gen-box gen-subtitle\">分機</div>"
                         . "<input class=\"gen-box gen-textbox gen-input-a\" id=\"gia4\" type=\"text\">"
 			. "<br><br>"
+
 			. "<table class=\"gen-table gen-table-b\" id=\"gt-b\">"
-			. 	"<tr><td>序號</td><td>化學物質名稱</td><td>平均數量/單位</td><td>最大數量/單位</td><td>(備註)毒化物</td><td>(備註)危險物</td><td>(備註)有害物</td></tr>"
-			. 	"<div></div>"
+			. 	"<tr><td>序號</td><td>機械、設備名稱</td><td>數量/單位</td><td>規格</td><td>自動檢查表</td><td>SOP</td><td>備註</td></tr>"
+			//. 	"<div></div>"
 			. "</table>"
 
+			// button
 			. "<div class=\"gen-box\"><button class=\"gen-button\" type=\"button\" onclick=\"getInputData(1)\">新增一列</button></div>"
 			. "<div class=\"gen-box\"><button class=\"gen-button\" type=\"button\" onclick=\"getInputData(2)\">送出</button></div>"
+
+                        . "<br><br>"
+			.	"<div>"
+			.		"附註：<br>"
+			.		"<blockquote>請依法執行自動檢查(包括定期檢查、作業檢點),檢查文件請保存3年備查。<br>儀器設備之規格 (使用電壓、操作溫度、操作壓力、馬力數、轉速、容積...等),銘牌上的
+
+資訊請盡量填寫。<br>本表資料係供陳報教育部及檢查單位相關用途之用,務請詳實填寫。</blockquote>"
+			. 	"</div>"
 
 			. "</div>";
               

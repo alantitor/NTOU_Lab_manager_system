@@ -1,7 +1,7 @@
 <?php
 // 處理公告欄資料
 
-        function drawDangerItemTable()
+        function drawCylinderTable()
         {
                 $css = "";
 		$js_par = "";
@@ -20,9 +20,9 @@
 		 * 3) call responseSubmitData() send data.
 		 */
 		$js_par = "a";
-		$js_body = "targetFormPHP = \"formTemplate/dangerItemTableFunction.php\";"  // set submit php
+		$js_body = "targetFormPHP = \"formTemplate/cylinderTableFunction.php\";"  // set submit php
 			 . "if (a == '1') {"  // add new row at table
-			 .	"var content = \"<tr><td><input class='gen-box gen-textbox gen-input-b' type='text'></td><td><input class='gen-box gen-textbox gen-input-b' type='text'></td><td><input class='gen-box gen-textbox gen-input-b' type='text'></td><td><input class='gen-box gen-textbox gen-input-b' type='text'></td><td><input class='gen-box gen-textbox gen-input-b' type='text'></td><td><input class='gen-box gen-textbox gen-input-b' type='text'></td><td><input class='gen-box gen-textbox gen-input-b' type='text'></td></tr>\";"  // create html
+			 .	"var content = \"<tr><td><input class='gen-box gen-textbox gen-input-b' type='text'></td><td><input class='gen-box gen-textbox gen-input-b' type='text'></td><td><input class='gen-box gen-textbox gen-input-b' type='text'></td><td><input class='gen-box gen-textbox gen-input-b' type='text'></td><td><input class='gen-box gen-textbox gen-input-b' type='text'></td><td><input class='gen-box gen-textbox gen-input-b' type='text'></td><td><input class='gen-box gen-textbox gen-input-b' type='text'></td><td><input class='gen-box gen-textbox gen-input-b' type='text'></td><td><input class='gen-box gen-textbox gen-input-b' type='text'></td><td><input class='gen-box gen-textbox gen-input-b' type='text'></td><td><input class='gen-box gen-textbox gen-input-b' type='text'></td></tr>\";"  // create html
 			 . 	"$(\"#gt-b tr:last-child\").after(content);"
 			 . "} else if (a == '2') {"  // submit data
 			 //. 	"alert('2');"
@@ -54,7 +54,7 @@
 			 .	"jsonStr += '\"gb_data\":' + arr_b_result + ',';"  // javascript to json array, don't add " at [].
 
 			 //  	count data number
-			 .	"jsonStr += '\"gb_unit\":\"7\",';"
+			 .	"jsonStr += '\"gb_unit\":\"11\",';"  // ***
 			 . 	"jsonStr += '\"gb_number\":\"' + tInput.length + '\",';"  // element number
 
 			 .	"jsonStr += '\"status\":\"1\"';"  // function trigger(ID), 1: submit, 2: update, 3: list all, 4: delete
@@ -66,7 +66,7 @@
 			 . "}";
 
 		 $time = date('Y-m-d');
-		 $html  = "<div class=\"gen-title\">國立臺灣海洋大學安全衛生適用場所基本資料表<br>毒性化學物質、危險物、有害物物質清單</div>"
+		 $html  = "<div class=\"gen-title\">國立臺灣海洋大學安全衛生適用場所基本資料表<br>局部排氣裝置及無菌操作台資料表</div>"
                		. "<hr class=\"gen-hr\">"
 			. "<div class=\"gen-box gen-subtitle\">填表時間</div>"
                         . "<input class=\"gen-box gen-textbox gen-input-a\" id=\"gia1\" value=\"$time\" type=\"text\" disabled>"
@@ -77,13 +77,21 @@
                         . "<div class=\"gen-box gen-subtitle\">分機</div>"
                         . "<input class=\"gen-box gen-textbox gen-input-a\" id=\"gia4\" type=\"text\">"
 			. "<br><br>"
+
 			. "<table class=\"gen-table gen-table-b\" id=\"gt-b\">"
-			. 	"<tr><td>序號</td><td>化學物質名稱</td><td>平均數量/單位</td><td>最大數量/單位</td><td>(備註)毒化物</td><td>(備註)危險物</td><td>(備註)有害物</td></tr>"
-			. 	"<div></div>"
+			. 	"<tr><td>序號</td><td>氣體名稱</td><td>容量(L)</td><td>數量(瓶)</td><td>瓶身顏色</td><td>使用年限(塑膠環顏色)</td><td>有無固定</td><td>危害警告標示</td><td>自動檢查表</td><td>SOP</td><td>備註</td></tr>"
+			//. 	"<div></div>"
 			. "</table>"
 
+			// button
 			. "<div class=\"gen-box\"><button class=\"gen-button\" type=\"button\" onclick=\"getInputData(1)\">新增一列</button></div>"
 			. "<div class=\"gen-box\"><button class=\"gen-button\" type=\"button\" onclick=\"getInputData(2)\">送出</button></div>"
+
+                        . "<br><br>"
+			.	"<div>"
+			.		"附註：<br>"
+			.		"<blockquote>本表資料係供陳報教育部及檢查單位相關用途之用,務請詳實填寫。</blockquote>"
+			. 	"</div>"
 
 			. "</div>";
               

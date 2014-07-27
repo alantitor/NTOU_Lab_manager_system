@@ -65,10 +65,11 @@
 			 . "}";
 
 
+                 $time = date('Y-m-d');
 		 $html  = "<div class=\"gen-title\">國立臺灣海洋大學安全衛生適用場所基本資料表場所人員名冊</div>"
                		. "<hr class=\"gen-hr\">"
 			. "<div class=\"gen-box gen-subtitle\">填表時間</div>"
-                        . "<input class=\"gen-box gen-textbox\" id=\"ga1\" type=\"text\">"
+                        . "<input class=\"gen-box gen-textbox\" id=\"ga1\" type=\"text\" value='$time' disabled>"
                         . "<div class=\"gen-box gen-subtitle\">場所負責人簽名</div>"
                         . "<input class=\"gen-box gen-textbox\" id=\"ga2\" type=\"text\">"
                         . "<div class=\"gen-box gen-subtitle\">填表人</div>"

@@ -6,5 +6,5 @@
 
 
 
-	echo "hello peopleRollFunctin";
+	echo "hello machineTableFunction.php";
 ?>

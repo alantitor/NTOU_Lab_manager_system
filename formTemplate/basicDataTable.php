@@ -19,51 +19,59 @@
 		 * 2) write javascript get input data.  use json format.
 		 * 3) call responseSubmitData() send data.
 		 */
-		$js_par = "";
-		$js_body = "targetFormPHP = \"formTemplate/\";"  // set submit php
+		$js_par = "a";
+		$js_body = "targetFormPHP = \"formTemplate/basicDataTableFunction.php\";"  // set submit php
 			 . "var jsonStr = '{';"
-			 . "var par = \"\";"
-			 . "var data = \"\";"
-			 . "for (i = 1; i <= 4; i++) {"
-			 . "	par = 'input' + i;"
-			 . "	data = document.getElementById(par).value;"
-			 //. "	alert(data);"
-			 . "	jsonStr += '\"a' + i + '\":\"' + data + '\",';"
-			 . "}"
-			 . "jsonStr += '\"number\":4';"
+
+			 // part 1 data
+			 . "var arr_a = [13];"
+			 . "var count = 0;"
+			 . "tInput = $('.gen-input1');"
+			 //. "alert(tInput.length);"
+			 . "tInput.each(function(){"
+			 .	"arr_a[count] = $(this).val();"
+			 .	"count++;"
+			 . "});"
+			 . "jsonStr += '\"ga_data\":' + JSON.stringify(arr_a) + ',';"
+			 . "jsonStr += '\"ga_number\":\"' + tInput.length + '\",';"
+			 // part 2 data
+			 . "var arr_b = [];"
+
+
+			 . "jsonStr += '\"status\":\"1\"';"
 			 . "jsonStr += '}';"
 			 //. "alert(jsonStr);"
 			 . "responseSubmitData(jsonStr);";
 
-
+		 $time = date('Y-m-d');
 		 $html  = "<div class=\"gen-title\">國立臺灣海洋大學安全衛生適用場所基本資料表</div>"
                		. "<hr class=\"gen-hr\">"
 			. "<div class=\"gen-box gen-subtitle\">填表時間</div>"
-                        . "<input class=\"gen-box gen-textbox\" id=\"input1\" type=\"text\">"
+			. "<input class='gen-box gen-textbox gen-input1' type='text' value='$time' disabled>"
                         . "<div class=\"gen-box gen-subtitle\">系所/中心</div>"
-                        . "<input class=\"gen-box gen-textbox\" id=\"input2\" type=\"text\">"
+                        . "<input class='gen-box gen-textbox gen-input1' type='text'>"
                         . "<div class=\"gen-box gen-subtitle\">場所名稱</div>"
-                        . "<input class=\"gen-box gen-textbox\" id=\"input1\" type=\"text\">"
+                        . "<input class='gen-box gen-textbox gen-input1' type='text'>"
                         . "<div class=\"gen-box gen-subtitle\">位置(館/樓/室)</div>"
-                        . "<input class=\"gen-box gen-textbox\" id=\"input1\" type=\"text\">"
+                        . "<input class='gen-box gen-textbox gen-input1' type='text'>"
                         . "<div class=\"gen-box gen-subtitle\">場所負責人</div>"
-                        . "<input class=\"gen-box gen-textbox\" id=\"input1\" type=\"text\">"
+                        . "<input class='gen-box gen-textbox gen-input1' type='text'>"
                         . "<div class=\"gen-box gen-subtitle\">緊急聯絡電話</div>"
-                        . "<input class=\"gen-box gen-textbox\" id=\"input1\" type=\"text\">"
+                        . "<input class='gen-box gen-textbox gen-input1' type='text'>"
                         . "<div class=\"gen-box gen-subtitle\">分機</div>"
-                        . "<input class=\"gen-box gen-textbox\" id=\"input1\" type=\"text\">"
+                        . "<input class='gen-box gen-textbox gen-input1' type='text'>"
                         . "<div class=\"gen-box gen-subtitle\">填表人/實驗室管理人</div>"
-                        . "<input class=\"gen-box gen-textbox\" id=\"input1\" type=\"text\">"
+                        . "<input class='gen-box gen-textbox gen-input1' type='text'>"
                         . "<div class=\"gen-box gen-subtitle\">緊急聯絡電話及E-mail</div>"
-                        . "<input class=\"gen-box gen-textbox\" id=\"input1\" type=\"text\">"
+                        . "<input class='gen-box gen-textbox gen-input1' type='text'>"
                         . "<div class=\"gen-box gen-subtitle\">分機</div>"
-                        . "<input class=\"gen-box gen-textbox\" id=\"input1\" type=\"text\">"
+                        . "<input class='gen-box gen-textbox gen-input1' type='text'>"
                         . "<div class=\"gen-box gen-subtitle\">化學品管理系統負責人</div>"
-                        . "<input class=\"gen-box gen-textbox\" id=\"input1\" type=\"text\">"
+                        . "<input class='gen-box gen-textbox gen-input1' type='text'>"
                         . "<div class=\"gen-box gen-subtitle\">E-mail</div>"
-                        . "<input class=\"gen-box gen-textbox\" id=\"input1\" type=\"text\">"
+                        . "<input class='gen-box gen-textbox gen-input1' type='text'>"
                         . "<div class=\"gen-box gen-subtitle\">分機</div>"
-                        . "<input class=\"gen-box gen-textbox\" id=\"input1\" type=\"text\">"
+                        . "<input class='gen-box gen-textbox gen-input1' type='text'>"
 
 			. "<br><br>"
 			. "<div class=\"gen-box gen-subtitle\">場所類別</div>"
@@ -119,10 +127,7 @@
                         . "<input class=\"gen-box gen-checkbox\" id=\"input\" value=\"\" name=\"s2\" type=\"radio\">土木"
 
 			
-
-
-
-			. "<div class=\"gen-box\"><button class=\"gen-button\" type=\"button\" onclick=\"getInputData()\">送出</button></div>"
+			. "<div class=\"gen-box\"><button class=\"gen-button\" type=\"button\" onclick=\"getInputData(1)\">送出</button></div>"
 			. "</div>";
               
 

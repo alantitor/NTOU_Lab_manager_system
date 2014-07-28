@@ -35,9 +35,9 @@
 			 . 	"var jsonStr = '{';"
 
 			 // 	get part1 input value
-			 .	"var arr_a = [$('#gia1').val(), $('#gia2').val(), $('#gia3').val(), $('#gia4').val()];"
-			 .	"jsonStr += '\"ga_data\":' + JSON.stringify(arr_a) + ',';"
-			 .	"jsonStr += '\"ga_number\":\"4\",';"
+			 //.	"var arr_a = [$('#gia1').val(), $('#gia2').val(), $('#gia3').val(), $('#gia4').val()];"
+			 //.	"jsonStr += '\"ga_data\":' + JSON.stringify(arr_a) + ',';"
+			 //.	"jsonStr += '\"ga_number\":\"4\",';"
 
 			 //  	get table b input value
 			 .	"var tInput = $('#gt-b').find('.gen-input-b');"
@@ -85,16 +85,18 @@
 			 . "}";
 
 		 $time = date('Y-m-d');
-		 $html  = "<div class=\"gen-title\">國立臺灣海洋大學安全衛生適用場所基本資料表<br>局部排氣裝置及無菌操作台資料表</div>"
+		 $html  = "<div class=\"gen-title\">國立臺灣海洋大學安全衛生適用場所基本資料表<br>輻射物質、設備資料表</div>"
                		. "<hr class=\"gen-hr\">"
-			. "<div class=\"gen-box gen-subtitle\">填表時間</div>"
-                        . "<input class=\"gen-box gen-textbox gen-input-a\" id=\"gia1\" value=\"$time\" type=\"text\" disabled>"
-                        . "<div class=\"gen-box gen-subtitle\">場所負責人簽名</div>"
-                        . "<input class=\"gen-box gen-textbox gen-input-a\" id=\"gia2\" type=\"text\">"
-                        . "<div class=\"gen-box gen-subtitle\">填表人</div>"
-                        . "<input class=\"gen-box gen-textbox gen-input-a\" id=\"gia3\" type=\"text\">"
-                        . "<div class=\"gen-box gen-subtitle\">分機</div>"
-                        . "<input class=\"gen-box gen-textbox gen-input-a\" id=\"gia4\" type=\"text\">"
+
+			//. "<div class=\"gen-box gen-subtitle\">填表時間</div>"
+                        //. "<input class=\"gen-box gen-textbox gen-input-a\" id=\"gia1\" value=\"$time\" type=\"text\" disabled>"
+                        //. "<div class=\"gen-box gen-subtitle\">場所負責人簽名</div>"
+                        //. "<input class=\"gen-box gen-textbox gen-input-a\" id=\"gia2\" type=\"text\">"
+                        //. "<div class=\"gen-box gen-subtitle\">填表人</div>"
+                        //. "<input class=\"gen-box gen-textbox gen-input-a\" id=\"gia3\" type=\"text\">"
+                        //. "<div class=\"gen-box gen-subtitle\">分機</div>"
+                        //. "<input class=\"gen-box gen-textbox gen-input-a\" id=\"gia4\" type=\"text\">"
+
 			. "<br><br>"
 
 			// table b

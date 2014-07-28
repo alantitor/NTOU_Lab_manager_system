@@ -31,15 +31,15 @@
 			 . 	"var jsonStr = '{';"
 
 			 // 	get part1 input value
-			 .	"var arr_a_size = 4;"
-			 .	"var arr_a = [4];"
-			 .	"var arr_a_result;"
-			 .	"arr_a[0] = $('#gia1').val();"
-			 .	"arr_a[1] = $('#gia2').val();"
-			 .      "arr_a[2] = $('#gia3').val();"
-			 .      "arr_a[3] = $('#gia4').val();"
-			 .	"arr_a_result = JSON.stringify(arr_a);"
-			 .	"jsonStr += '\"ga_data\":' + arr_a_result + ',';"
+			 //.	"var arr_a_size = 4;"
+			 //.	"var arr_a = [4];"
+			 //.	"var arr_a_result;"
+			 //.	"arr_a[0] = $('#gia1').val();"
+			 //.	"arr_a[1] = $('#gia2').val();"
+			 //.      "arr_a[2] = $('#gia3').val();"
+			 //.      "arr_a[3] = $('#gia4').val();"
+			 //.	"arr_a_result = JSON.stringify(arr_a);"
+			 //.	"jsonStr += '\"ga_data\":' + arr_a_result + ',';"
 
 			 //  	get part2 input value
 			 .	"var arr_gib_a = [$('input:radio[name=\"gib-a1\"]:checked').val(), $('input:radio[name=\"gib-a2\"]:checked').val(), $('input:radio[name=\"gib-a3\"]:checked').val(), $('#gib-a4').val(), $('input:radio[name=\"gib-a5\"]:checked').val()];"
@@ -78,15 +78,18 @@
 		$time = date('Y-m-d');
 		$html  = "<div class=\"gen-title\">國立臺灣海洋大學安全衛生適用場所<br>管理資料調查表</div>"
 			. "<hr class=\"gen-hr\">"
-			. "<div class=\"gen-box gen-subtitle\">填表時間</div>"
-			. "<input class=\"gen-box gen-textbox gen-input-a\" id=\"gia1\" value=\"$time\" type=\"text\" disabled>"
-			. "<div class=\"gen-box gen-subtitle\">場所負責人簽名</div>"
-			. "<input class=\"gen-box gen-textbox gen-input-a\" id=\"gia2\" type=\"text\">"
-			. "<div class=\"gen-box gen-subtitle\">填表人</div>"
-			. "<input class=\"gen-box gen-textbox gen-input-a\" id=\"gia3\" type=\"text\">"
-			. "<div class=\"gen-box gen-subtitle\">分機</div>"
-			. "<input class=\"gen-box gen-textbox gen-input-a\" id=\"gia4\" type=\"text\">"
+
+			//. "<div class=\"gen-box gen-subtitle\">填表時間</div>"
+			//. "<input class=\"gen-box gen-textbox gen-input-a\" id=\"gia1\" value=\"$time\" type=\"text\" disabled>"
+			//. "<div class=\"gen-box gen-subtitle\">場所負責人簽名</div>"
+			//. "<input class=\"gen-box gen-textbox gen-input-a\" id=\"gia2\" type=\"text\">"
+			//. "<div class=\"gen-box gen-subtitle\">填表人</div>"
+			//. "<input class=\"gen-box gen-textbox gen-input-a\" id=\"gia3\" type=\"text\">"
+			//. "<div class=\"gen-box gen-subtitle\">分機</div>"
+			//. "<input class=\"gen-box gen-textbox gen-input-a\" id=\"gia4\" type=\"text\">"
+
 			. "<br><br>"
+
 			. "<div class=\"gen-box gen-subtitle\">實驗場所應備有之基本安全衛生措施</div>"
 			. "<table class=\"gen-table gen-table-b\" id=\"gt-b\">"
 			. 	"<tr>"

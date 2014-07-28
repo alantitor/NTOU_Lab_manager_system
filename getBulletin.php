@@ -28,19 +28,15 @@ function printBulletin()
                 //$query_result = mysqli_query($connect, "SELECT * FROM bulletin WHERE DATE(time) = DATE(NOW())");  // order data by time, list 20 data.
 		$query_result = mysqli_query($connect, "SELECT * FROM bulletin ORDER BY time DESC LIMIT 20");  // (DESC)descend or (ASC)ascend
 
-                               
                 while ($row = mysqli_fetch_array($query_result)) {
-                        $id = $row['id'];
                         $time = $row['time'];
                         $unit = $row['unit'];
                         $author = $row['author'];
                         $title = $row['title'];
                         $content = $row['content'];
-                        $hidden = $row['hidden'];                     
+                        $status = $row['status'];                     
                 
-                        if ($hidden == 0) {  // do not show this one
-                                continue;
-                        } else {
+                        if ($status == 1) {
                                 $temp_string .= "<tr>";
                                 $temp_string .= "<td id=\"gen-a1\">" . $time . "</td>";
 				$temp_string .= "<td id=\"gen-a2\">" . $unit . "</td>";
